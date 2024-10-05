@@ -1,0 +1,99 @@
+###
+GET http://localhost:4004/odata/v4/CatalogService
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/$metadata
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet?$filter=nameFirst eq 'Sally'
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/74e512f1-f1d4-4664-bd6b-4bc35f5ee054
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/$count
+
+###Insert data with POST
+POST http://localhost:4004/odata/v4/CatalogService/EmployeeSet
+Content-Type: application/json
+
+{
+     "nameFirst": "Abhinav",
+      "nameMiddle": null,
+      "nameLast": "ANand",
+      "nameInitials": null,
+      "sex": "M",
+      "language": "H",
+      "phoneNumber": "+1 224 374 524",
+      "email": "sally.spring@itelo.info",
+      "loginName": "SPRINGS",
+      "Currency_code": "USD",
+      "salaryAmount": 10000,
+      "accountNumber": "111222333",
+      "bankId": "510000655",
+      "bankName": "My Bank of Antioch"
+}
+
+###Patch update PATCH
+PATCH http://localhost:4004/odata/v4/CatalogService/EmployeeSet/b28bb611-10de-4c97-8095-8e825ddeda50
+Content-Type: application/json
+
+{
+    "salaryAmount": 10000000
+}
+
+###
+GET http://localhost:4004/odata/v4/CatalogService/EmployeeSet/2f7edcef-d2a2-4767-90ff-4e4fd188f73a
+
+###Delete Employee
+DELETE http://localhost:4004/odata/v4/CatalogService/EmployeeSet/51b375ad-cf21-4b4e-8a29-dbca2e0632b4
+
+
+### Get for BP
+GET http://localhost:4004/odata/v4/CatalogService/BusinessPartnerSet
+
+### Post for BP
+POST http://localhost:4004/odata/v4/CatalogService/BusinessPartnerSet
+Content-Type: application/json
+
+{
+    "NODE_KEY": "jbiqwd8908d9q",
+      "BP_ROLE": "1",
+      "EMAIL_ADDRESS": "customer-theodor.monathy@anavideon.com",
+      "PHONE_NUMBER": "5850428367",
+      "FAX_NUMBER": "5850428004",
+      "WEB_ADDRESS": "http://www.anavideon.com",
+      "ADDRESS_GUID_NODE_KEY": "74867AD200E41EDBA5D8B068859AE052",
+      "BP_ID": "100000014",
+      "COMPANY_NAME": "Abhinav Anand"
+}
+
+### Patcht for BP
+PATCH  http://localhost:4004/odata/v4/CatalogService/BusinessPartnerSet/jbiqwd8908d9q
+Content-Type: application/json
+
+{
+
+    "PHONE_NUMBER": "9643595635"
+}
+
+
+### Delete for BP
+DELETE   http://localhost:4004/odata/v4/CatalogService/BusinessPartnerSet/jbiqwd8908d9q
+
+
+###get for ProductViews
+GET  http://localhost:4004/odata/v4/CatalogService/ProductView/74867AD200E41EDBA5D8B06B26EB4052?$expand=To_Items
+
+
+###get for POs
+GET  http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052
+
+###Actions are always insert or update
+POST  http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/boost
+Content-Type: application/json
+
+{}
+
+###Functions are always get
+GET http://localhost:4004/odata/v4/CatalogService/POs/74867AD200E41EDBA5D8B0C98DC28052/largestOrder()
