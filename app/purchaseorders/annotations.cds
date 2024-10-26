@@ -91,7 +91,7 @@ annotate service.POs with @(
         },
         {
             $Type: 'UI.DataField',
-            Value: NODE_KEY
+            Value: ID
         }
 
     ],
@@ -130,7 +130,7 @@ annotate service.POItems with @(
     UI.LineItem            : [
         {
             $Type: 'UI.DataField',
-            Value: PARENT_KEY_NODE_KEY,
+            Value: PARENT_KEY_ID,
         },
         {
             $Type: 'UI.DataField',
@@ -175,7 +175,7 @@ annotate service.POItems with @(
     UI.Identification      : [
         {
             $Type: 'UI.DataField',
-            Value: NODE_KEY
+            Value: ID
         },
         {
             $Type: 'UI.DataField',

@@ -93,19 +93,4 @@ context CDSViews {
             Country,
             To_Items.CurrencyCode;
 
-    define view employees as
-        select from master.employees {
-            key salaryAmount,
-                max(
-                    case
-                        when
-                            sex = 'M'
-                        then
-                            sex
-                        else
-                            null
-                    end
-                ) as sex : common.Gender
-        }
-
 }

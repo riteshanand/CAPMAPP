@@ -8,7 +8,10 @@ using {
 using {buss.view as cdsView} from '../db/CDSViews';
 
 
-service CatalogService @(path: 'CatalogService') {
+service CatalogService @(
+    path    : 'CatalogService',
+    requires: 'authenticated-user'
+) {
     //End Point to perform the CRUDQ operations.
 
     // @Capabilities: {
@@ -16,13 +19,24 @@ service CatalogService @(path: 'CatalogService') {
     //     Deletable: true
     // }
     // @readonly
-    entity EmployeeSet                      as projection on master.employees;
-    // @Capabilities: {
-    //     Updatable: false,
-    //     Deletable: false
-    // }
-    // datamodel_Master
+    entity EmployeeSet @(restrict: [
+        {
+            grant: ['READ'],
+            to   : 'Viewer',
+            where: 'bankName = $user.BankName'
+        },
+        {
+            grant: ['WRITE'],
+            to   : 'Admin'
+        }
+    ])                                      as projection on master.employees;
+
+    @Capabilities: {
+        Updatable: false,
+        Deletable: false
+    }
     entity BusinessPartnerSet               as projection on master.businesspartner;
+
     entity AddressSet                       as projection on master.address;
     entity ProductSet                       as projection on master.product; //commenting as the product data is already targetted by the cdsview projection
     // entity POItems                          as projection on transaction.poitems;
@@ -90,15 +104,15 @@ service CatalogService @(path: 'CatalogService') {
     entity POItems                          as projection on transaction.poitems;
 
 
-    //CDSView
+//CDSView
 
-    // entity ProductView as projection on cdsView.CDSViews.ProductView{
-    //     *,
-    //     To_Items
-    // };
-    // entity POItems as projection on cdsView.CDSViews.ItemView;
+// entity ProductView as projection on cdsView.CDSViews.ProductView{
+//     *,
+//     To_Items
+// };
+// entity POItems as projection on cdsView.CDSViews.ItemView;
 
-    // entity CProductValuesView as projection on cdsView.CDSViews.CProductValuesView;
+// entity CProductValuesView as projection on cdsView.CDSViews.CProductValuesView;
 
-    entity employeesSetView                 as projection on cdsView.CDSViews.employees;
+// entity employeesSetView                 as projection on cdsView.CDSViews.employees;
 }
