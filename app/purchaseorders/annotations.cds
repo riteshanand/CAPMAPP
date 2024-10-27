@@ -21,12 +21,12 @@ annotate service.POs with @(
             $Type: 'UI.DataField',
             Value: PARTNER_GUID.COMPANY_NAME,
         },
-        {
-            $Type : 'UI.DataFieldForAction',
-            Label : 'Boost',
-            Action: 'buss.srv.CatalogService.boost',
-            Inline: true
-        },
+        // {
+        //     $Type : 'UI.DataFieldForAction',
+        //     Label : 'Boost',
+        //     Action: 'buss.srv.CatalogService.boost',
+        //     Inline: true
+        // },
         {
             $Type: 'UI.DataField',
             Value: GROSS_AMOUNT,
