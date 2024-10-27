@@ -24,8 +24,8 @@ annotate service.POs with @(
         {
             $Type : 'UI.DataFieldForAction',
             Label : 'Boost',
-            Action: 'buss.srv.CatalogService.boost'
-
+            Action: 'buss.srv.CatalogService.boost',
+            Inline: true
         },
         {
             $Type: 'UI.DataField',
